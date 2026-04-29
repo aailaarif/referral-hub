@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shared Referral</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">🔗</div>
+      <div>
+        <div class="brand-title">Shared Referral</div>
+        <div class="brand-sub">Limited access link</div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div id="scopePill" class="pill pill-gray">Loading…</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div class="card-title">
+        <div class="h2">Referral</div>
+        <div id="msg" class="muted">Fetching link…</div>
+      </div>
+
+      <div id="summary" class="tab-panel"></div>
+    </section>
+
+    <section class="card">
+      <div class="h2">📎 Attachments</div>
+      <div id="attachments" class="list"></div>
+
+      <div class="divider"></div>
+
+      <label class="field">
+        <span>Upload (if permitted)</span>
+        <input id="fileInput" type="file" />
+      </label>
+      <button id="uploadBtn" class="btn btn-primary">Upload</button>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span class="muted small">Tip: share links can be one-time + expiring</span>
+  </footer>
+
+  <script src="./share.js"></script>
+</body>
+</html>

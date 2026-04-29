@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Referral Hub</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">🏥</div>
+      <div>
+        <div class="brand-title">Referral Hub</div>
+        <div class="brand-sub">Simple referral tracking + messaging</div>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <div id="rolePill" class="pill pill-gray hidden">Not logged in</div>
+      <button id="logoutBtn" class="btn btn-ghost hidden">Logout</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- LOGIN CARD -->
+    <section id="loginSection" class="card">
+      <div class="card-title">
+        <div class="h2">Sign in</div>
+        <div class="muted">Use demo accounts to preview roles + permissions.</div>
+      </div>
+
+      <div class="grid2">
+        <label class="field">
+          <span>Email</span>
+          <input id="email" placeholder="referrer@test.com" autocomplete="username" />
+        </label>
+
+        <label class="field">
+          <span>Password</span>
+          <input id="password" type="password" placeholder="pass123" autocomplete="current-password" />
+        </label>
+      </div>
+
+      <div class="row">
+        <button id="loginBtn" class="btn btn-primary">Login</button>
+        <button id="seedDemoBtn" class="btn btn-ghost">Seed demo users</button>
+      </div>
+
+      <div class="quick">
+        <div class="muted small">Quick login:</div>
+        <div class="chips">
+          <button class="chip" data-login="referrer">🧑‍💼 Referrer</button>
+          <button class="chip" data-login="specialist">👩‍⚕️ Specialist</button>
+          <button class="chip" data-login="patient">🧑 Patient</button>
+          <button class="chip" data-login="admin">🛡️ Admin</button>
+	  <button class="chip" data-login="patientView">🧑 Patient Portal</button>
+        </div>
+      </div>
+
+      <div id="loginError" class="error"></div>
+    </section>
+
+    <!-- APP -->
+    <section id="appSection" class="hidden">
+      <!-- SUMMARY / PERMISSIONS -->
+      <section class="card">
+        <div class="row space">
+          <div>
+            <div class="h2">Dashboard</div>
+            <div id="whoami" class="muted"></div>
+          </div>
+          <div class="row">
+            <button id="refreshBtn" class="btn btn-ghost">Refresh</button>
+          </div>
+        </div>
+
+        <div class="perm-grid">
+          <div class="perm">
+            <div class="perm-title">✅ What you can do</div>
+            <ul id="canDo" class="perm-list"></ul>
+          </div>
+          <div class="perm">
+            <div class="perm-title">🚫 What you can’t do</div>
+            <ul id="cantDo" class="perm-list"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- CREATE (Referrer only – UI hides for other roles) -->
+      <section id="createSection" class="card hidden">
+        <div class="row space">
+          <div>
+            <div class="h2">Create referral</div>
+            <div class="muted">Pick a specialist clinic, add reason, optional patient info.</div>
+          </div>
+          <div class="pill pill-gray">🧑‍💼 Referrer</div>
+        </div>
+
+        <div class="grid2">
+          <label class="field">
+            <span>Specialist Clinic ID</span>
+            <input id="specialistClinicId" placeholder="clinicB" />
+          </label>
+
+          <label class="field">
+            <span>Reason</span>
+            <input id="reason" placeholder="Needs cardiology consult" />
+          </label>
+
+          <label class="field">
+            <span>Patient email (optional)</span>
+            <input id="patientEmail" placeholder="patient@test.com" />
+          </label>
+
+          <label class="field">
+            <span>Patient name (optional)</span>
+            <input id="patientName" placeholder="Jane Doe" />
+          </label>
+        </div>
+
+        <div class="row">
+          <button id="createReferralBtn" class="btn btn-primary">➕ Create</button>
+          <div id="createMsg" class="muted small"></div>
+        </div>
+      </section>
+
+      <!-- LIST -->
+      <section class="card">
+        <div class="row space">
+          <div>
+            <div class="h2">Referrals</div>
+            <div class="muted">Click a referral to view details.</div>
+          </div>
+        </div>
+        <div id="referralsList" class="list"></div>
+      </section>
+
+      <!-- DETAILS -->
+      <section id="detailSection" class="card hidden">
+        <div class="row space">
+          <div class="h2">Referral</div>
+          <button id="closeDetailBtn" class="btn btn-ghost">Close</button>
+        </div>
+
+        <div id="detailHeader" class="detail-header"></div>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="overview">📄 Overview</button>
+          <button class="tab" data-tab="notes">💬 Notes</button>
+          <button class="tab" data-tab="requests">🧾 Requests</button>
+          <button class="tab" data-tab="attachments">📎 Attachments</button>
+          <button class="tab" data-tab="timeline">⏱ Timeline</button>
+        </div>
+
+        <div id="tab_overview" class="tab-panel"></div>
+        <div id="tab_notes" class="tab-panel hidden"></div>
+        <div id="tab_requests" class="tab-panel hidden"></div>
+        <div id="tab_attachments" class="tab-panel hidden"></div>
+        <div id="tab_timeline" class="tab-panel hidden"></div>
+
+        <div id="detailMsg" class="muted small"></div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span class="muted small">Backend: same-origin (good for Azure)</span>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

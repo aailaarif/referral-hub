@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Referral Hub (Simple)</title>
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+    <header>
+        <h1>Referral Hub</h1>
+        <div class="row">
+            <span id="whoami" class="muted">Not logged in</span>
+            <button id="logoutBtn" class="secondary hidden">Logout</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- LOGIN -->
+        <section id="loginSection" class="card">
+            <h2>Login</h2>
+            <div class="grid2">
+                <label>
+                    Email
+                    <input id="email" placeholder="referrer@test.com" />
+                </label>
+                <label>
+                    Password
+                    <input id="password" type="password" placeholder="pass123" />
+                </label>
+            </div>
+            <button id="loginBtn">Login</button>
+            <p class="muted small">
+                Tip: Use your existing seeded users (referrer@test.com / specialist@test.com).
+            </p>
+            <p id="loginError" class="error"></p>
+        </section>
+
+        <!-- APP -->
+        <section id="appSection" class="hidden">
+            <!-- CREATE -->
+            <section class="card">
+                <h2>Create Referral</h2>
+                <div class="grid2">
+                    <label>
+                        Specialist Clinic ID
+                        <input id="specialistClinicId" placeholder="clinicB" />
+                    </label>
+                    <label>
+                        Reason
+                        <input id="reason" placeholder="Needs cardiology consult" />
+                    </label>
+                </div>
+                <button id="createReferralBtn">Create</button>
+                <p id="createMsg" class="muted small"></p>
+            </section>
+
+            <!-- LIST -->
+            <section class="card">
+                <div class="row space">
+                    <h2>My Referrals</h2>
+                    <button id="refreshBtn" class="secondary">Refresh</button>
+                </div>
+                <div id="referralsList" class="list"></div>
+            </section>
+
+            <!-- DETAILS -->
+            <section id="detailSection" class="card hidden">
+                <div class="row space">
+                    <h2>Referral Details</h2>
+                    <button id="closeDetailBtn" class="secondary">Close</button>
+                </div>
+
+                <div id="detailBody"></div>
+
+                <div class="row">
+                    <label class="grow">
+                        Update status (specialist only)
+                        <select id="statusSelect">
+                            <option value="received">received</option>
+                            <option value="scheduled">scheduled</option>
+                            <option value="closed">closed</option>
+                        </select>
+                    </label>
+                    <button id="updateStatusBtn">Update</button>
+                </div>
+
+                <p id="detailMsg" class="muted small"></p>
+            </section>
+        </section>
+    </main>
+
+    <footer class="muted small">
+        Frontend is intentionally simple. API base: <code id="baseUrlLabel"></code>
+    </footer>
+
+    <script src="./app.js"></script>
+</body>
+</html>
