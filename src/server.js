@@ -4,13 +4,20 @@ dotenv.config();
 import { connectDb } from "./db.js";
 import { buildApp } from "./app.js";
 
-await connectDb(process.env.MONGO_URI);
+async function main() {
+  try {
+    await connectDb(process.env.MONGO_URI);
 
-const app = buildApp();
+    const app = buildApp();
 
-// Azure sets PORT. Fallback helps local runs.
-const port = Number(process.env.PORT) || 3000;
+    const port = Number(process.env.PORT) || 3000;
+    app.listen(port, () => {
+      console.log("API running on port", port);
+    });
+  } catch (err) {
+    console.error("Startup failed:", err);
+    process.exit(1);
+  }
+}
 
-app.listen(port, () => {
-  console.log("API running on port", port);
-});
+main();
